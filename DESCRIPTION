@@ -17,5 +17,6 @@ URL: https://github.com/mddavila/lavTools
 BugReports: https://github.com/mddavila/lavTools/issues
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat
 VignetteBuilder: knitr
