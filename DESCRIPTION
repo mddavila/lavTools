@@ -16,3 +16,5 @@ Imports:
     semTools (>= 0.5-1)
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
+URL: https://github.com/mddavila/lavTools
+BugReports: https://github.com/mddavila/lavTools/issues
