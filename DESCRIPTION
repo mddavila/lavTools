@@ -1,0 +1,18 @@
+Package: lavTools
+Title: A lavaan Toolbox of Useful Wrapper Functions
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Miguel David",
+           family = "Dávila Palomino",
+           role = c("aut", "cre"),
+           email = "mddavila@pucp.pe")
+Description: What the package does (one paragraph).
+Depends: R (>= 3.5.2)
+License: GPL (>=2)
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    lavaan (>= 0.6-3),
+    semTools (>= 0.5-1)
+RoxygenNote: 6.1.1
+Roxygen: list(markdown = TRUE)
