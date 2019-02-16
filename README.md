@@ -1,7 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# lavTools [![Build Status](https://travis-ci.com/mddavila/lavTools.svg?token=csxR3TjAK4Lsmjcx7gXo&branch=master)](https://travis-ci.com/mddavila/lavTools)
+# lavTools
+
+[![Build
+Status](https://travis-ci.com/mddavila/lavTools.svg?token=csxR3TjAK4Lsmjcx7gXo&branch=master)](https://travis-ci.com/mddavila/lavTools)
+[![License: GPL
+v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 **A lavaan Toolbox of Useful Wrapper Functions** The goal of lavTools is
 to … One Paragraph of project description goes here
