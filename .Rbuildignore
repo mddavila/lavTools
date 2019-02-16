@@ -1,4 +1,6 @@
 ^README\.md$
+^NEWS\.md$
+^README\.Rmd$
 ^LICENSE$
 ^\.travis\.yml$
 ^data-raw$
