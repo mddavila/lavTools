@@ -1,3 +1,5 @@
+^\.gitattributes$
+^appveyor\.yml$
 ^codecov\.yml$
 ^/man/figures$
 ^README\.md$
