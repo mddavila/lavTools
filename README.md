@@ -5,6 +5,8 @@
 
 [![Build
 Status](https://travis-ci.com/mddavila/lavTools.svg?token=csxR3TjAK4Lsmjcx7gXo&branch=master)](https://travis-ci.com/mddavila/lavTools)
+[![Coverage
+status](https://codecov.io/gh/mddavila/lavTools/branch/master/graph/badge.svg)](https://codecov.io/github/mddavila/lavTools?branch=master)
 [![License: GPL
 v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 

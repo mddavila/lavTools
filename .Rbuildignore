@@ -1,3 +1,4 @@
+^codecov\.yml$
 ^/man/figures$
 ^README\.md$
 ^NEWS\.md$

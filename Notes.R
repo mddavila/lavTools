@@ -1,7 +1,91 @@
+WaldTest <- function(fit = NULL, digits = 3, cons = c("==0"), order = TRUE,
+                     only_trim = FALSE, full = FALSE, keep_label = FALSE,
+                     remove_def = TRUE, all = TRUE) {
+    ## Piece of code slightly modified from the lavTestWald function in lavaan.
+    ## This chunk made a data.frame from the constraints argument.
+    CON <- attr(lavaan::lavParseModelString(cons), "constraints")
+    LIST <- data.frame(unlist(lapply(CON, "[[", "lhs")),
+                       unlist(lapply(CON, "[[", "op")),
+                       unlist(lapply(CON, "[[", "rhs")))
+    colnames(LIST) <- c("lhs", "op", "rhs")
+    ## LIST[LIST == ""] <- NA;; sum(LIST == "")
+    ## !complete.cases(LIST)
+    ## LABELS
+    ## nlabel <- fit@ParTable$label[fit@ParTable$label != ""]
+    back <- fit@ParTable
+    if (all == TRUE) {
+        par_table <- as.data.frame(fit@ParTable, stringsAsFactors = FALSE)
+        free_nr <- (par_table$lhs == par_table$rhs) +
+            (par_table$free < 1) +
+            !(par_table$label == "")
+        par_table$label[free_nr == 0] <- paste0(
+            "l", 1:length(par_table$label[free_nr == 0]))
+        fit@ParTable$label <- par_table$label
+    }
+    par_est <- lavaan::parameterEstimates(fit, standardized = TRUE,
+                                          remove.def = remove_def)
+    par_est <- par_est[!par_est$label == "", ]
+    characters <- par_est[, 1:4]
+    numbers <- par_est[, 5:ncol(par_est)]
+    if (nrow(LIST) == 1 & sum(LIST == "") == 1) {
+        con <- paste0(par_est$label, cons)
+    } else if (nrow(LIST) > 1 & sum(LIST == "") == 1) {
+        cons <- unlist(strsplit(cons, "\n"))
+        w_true <- which(LIST == "", TRUE)
+        a_label <- par_est$label %in% c(as.character(LIST$lhs),
+                                        as.character(LIST$rhs))
+        ## con <- c(paste(cons[cons != cons[w_true[1]]], collapse = "\n"), paste0(par_est$label[!a_label], cons[w_true[1]]))
+        ## t(sapply(d, function(x) grepl(x, cons)))
+        ## sum(grepl(",", cons)) == 1
+        con <- par_est$label
+        con[a_label] <- cons[cons != cons[w_true[1]]]
+        con[!a_label] <- paste0(par_est$label[!a_label], cons[w_true[1]])
+        ## con <- c(cons[cons != cons[w_true[1]]],
+        ##          paste0(par_est$label[!a_label], cons[w_true[1]]))
+    } else if (nrow(LIST) >= 1 & sum(LIST == "") == 0 & all == TRUE) {
+        cons <- unlist(strsplit(cons, "\n"))
+        a_label <- par_est$label %in% c(as.character(LIST$lhs),
+                                        as.character(LIST$rhs))
+        con <- par_est$label
+        con[a_label] <- cons
+        con[!a_label] <- paste0(par_est$label[!a_label], "==0")
+    } else if (nrow(LIST) >= 1 & sum(LIST == "") == 0 & all == FALSE) {
+        con <-  unlist(strsplit(cons, "\n"))
+        ## con <- cons
+    }
+    wald <-  sapply(con, lavaan::lavTestWald, object = fit)
+    dframe <- data.frame(matrix(unlist(wald), nrow = ncol(wald), byrow = T),
+                         stringsAsFactors = FALSE)
+
+    const    <- colnames(wald)
+    stat     <- round(as.numeric(dframe$X1), digits)
+    df       <- as.numeric(dframe$X2)
+    wald.pv  <- round(as.numeric(dframe$X3), digits)
+    type.se  <- dframe$X4
+
+    out <- data.frame(characters, const, stat, df, wald.pv, type.se, numbers)
+    out[, -c(1:5, 9)] <- round(out[, -c(1:5, 9)], digits)
+
+    if (keep_label == FALSE) {
+        fit@ParTable <- back
+    }
+
+    if (full == FALSE) {
+        out <- out[, 1:9]
+    }
+
+    if (order == TRUE) {
+        out <- out[order(out$stat), ]
+    }
+
+    if (only_trim == TRUE) {
+        out <- subset(out, wald.pv >= .05)
+    }
+    out
+}
 
 
-
-
+###########################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
 
 WaldTest <- function(fit = NULL, digits = 3, cons = c("==0"), order = TRUE, only.trim = FALSE, full = FALSE, keep.label = FALSE, remove.def = TRUE, all = FALSE)
 {
