@@ -1,3 +1,4 @@
+^ignore$
 ^DEMO\.Rmd$
 ^\.gitattributes$
 ^appveyor\.yml$
