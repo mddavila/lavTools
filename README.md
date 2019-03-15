@@ -4,7 +4,7 @@
 # lavTools
 
 [![Build
-Status](https://travis-ci.com/mddavila/lavTools.svg?token=csxR3TjAK4Lsmjcx7gXo&branch=master)](https://travis-ci.com/mddavila/lavTools)
+Status](https://travis-ci.org/mddavila/lavTools.svg?branch=master)](https://travis-ci.org/mddavila/lavTools)
 [![Coverage
 status](https://codecov.io/gh/mddavila/lavTools/branch/master/graph/badge.svg)](https://codecov.io/github/mddavila/lavTools?branch=master)
 [![Build
