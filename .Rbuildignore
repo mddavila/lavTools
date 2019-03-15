@@ -1,3 +1,4 @@
+^DEMO\.Rmd$
 ^\.gitattributes$
 ^appveyor\.yml$
 ^codecov\.yml$
